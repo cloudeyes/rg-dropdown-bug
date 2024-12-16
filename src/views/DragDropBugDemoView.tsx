@@ -34,7 +34,7 @@ export default function DragDropBugDemoView() {
     <>
       <div className="header flex flex-row gap-2 p-2 py-1">
         <h1 className="text-center text-lg font-semibold">
-          RealGrid Dropdown Bug : Drop Items to the Empty Grid
+          RealGrid Drog&Drop Bug : Drop Items to the Empty Grid
         </h1>
       </div>
       <h2 className="flex items-center text-lg font-semibold px-2 py-1 bg-green-50">

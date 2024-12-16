@@ -8,6 +8,6 @@ pnpm install
 pnpm dev
 ```
 
-## Dropdown Bug Demo
+## Drog&Drop Bug Demo
 
 ![alt text](docs/images/image.png)
