@@ -28,6 +28,8 @@ export default function ExampleGrid(props: Props) {
     const container = realgridElement.current!;
     const gridView = props.getGridView(container);
     const provider = gridView.getDataSource() as LocalDataProvider;
+    provider.setFields(fields);
+    gridView.setColumns(columns);
 
     gridView.setStateBar({ visible: false });
     gridView.setCheckBar({ visible: false });
@@ -49,14 +51,9 @@ export default function ExampleGrid(props: Props) {
     });
 
     gridView.onCurrentRowChanged = (grid, _, rowIdx) => {
-      console.log("onCurrentRowChanged");
       grid.checkAll(false);
       grid.checkRow(rowIdx, true);
     };
-
-    provider.setFields(fields);
-    gridView.setColumns(columns);
-    provider.setRows(rows);
 
     if (movable) {
       gridView.editOptions.movable = true;
@@ -66,11 +63,12 @@ export default function ExampleGrid(props: Props) {
       });
     } else {
       gridView.setDataDropOptions({
-        // DropTarget 의 피드백 스타일을 Row 로 설정하면 2.8.X에서 동작하지 않음.
+        // BUG: DropTarget 의 피드백 스타일을 Row 로 설정하면 2.8.X에서 동작하지 않음.
         feedbackStyle: DragFeedbackStyle.ROW,
       });
     }
 
+    provider.setRows(rows);
     props.onInitGrid?.(gridView);
 
     return () => {
