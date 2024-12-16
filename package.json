@@ -13,7 +13,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "realgrid": "^2.8.6",
-    "realgrid-2.7.2": "npm:realgrid@2.7.2"
+    "realgrid-2.7.2": "npm:realgrid@2.7.2",
+    "sass": "^1.83.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

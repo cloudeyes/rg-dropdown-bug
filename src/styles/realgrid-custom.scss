@@ -1,0 +1,75 @@
+@use "sass:color";
+@use "./variables";
+
+.rg-grid {
+  border: 1px solid #cccccc;
+}
+
+.rg-grid {
+  border: 1px solid #cccccc;
+}
+
+.rg-filter-selector {
+  z-index: 10;
+}
+
+.rg-table {
+  tr.error {
+    color: red;
+  }
+
+  tr.checked {
+    &>td:first-child {
+      border-left: 2px solid variables.$rg-check-line-color !important;
+
+      div.rg-renderer {
+        margin-left: -2px;
+      }
+    }
+
+    &>td:last-child {
+      border-right: 2px solid variables.$rg-check-line-color !important;
+
+      div.rg-renderer {
+        margin-right: -2px;
+      }
+    }
+
+    &.first {
+      &>td {
+        border-top: 2px solid blue !important;
+      }
+    }
+
+    &>td {
+      border-top: 1px solid variables.$rg-check-line-color !important;
+      border-bottom: 2px solid variables.$rg-check-line-color !important;
+
+      div.checked-fill {
+        margin-top: -1px !important;
+        max-height: 21px !important;
+      }
+    }
+  }
+}
+
+.rg-body .rg-table tr td:hover,
+.rg-fixed-body .rg-table tr td:hover {
+  background: initial;
+  outline: none;
+
+  &::before {
+    content: "";
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border: 1px solid rgba(120, 120, 120, 0.5);
+  }
+}
+
+.row-selected {
+  background-color: #333;
+  color: white;
+}

@@ -1,0 +1,30 @@
+@use "sass:color";
+
+// Realgrid
+$rg-check-line-color: #e56615;
+
+$rg-color-header-bg: #48505d;
+$rg-color-header-fg: #ffffff;
+$rg-color-panel-fg: #ffffff;
+
+$rg-color-header-focus-bg: color.adjust($rg-color-header-bg, $lightness: 10%);
+$rg-color-header-select-bg: $rg-color-header-bg;
+
+$rg-color-rowind-focus-bg: #c0c0c0;
+$rg-color-rowind-focus-fg: black;
+
+$rg-color-rowind-select-bg: #606060;
+$rg-color-rowind-select-fg: white;
+$rg-color-header-hover-bg: color.adjust($rg-color-header-bg, $lightness: 20%);
+
+$rg-color-border-focus: 1px solid rgba(116, 116, 116, 0.8);
+$rg-color-border-focus-deactive: $rg-color-border-focus;
+$rg-color-border-focus-line: $rg-color-border-focus;
+$rg-color-border-focus-editing: 2px solid #e56615;
+
+$rg-color-select-item-bg: #f8be0034;
+$rg-color-select-item-border: #f51818;
+$rg-color-select-item-border-width: 2px;
+$rg-color-select-item-bg-hover: #666;
+$rg-color-select-item-fg: initial;
+$rg-color-select-bg: #0078d7;

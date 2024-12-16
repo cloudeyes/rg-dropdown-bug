@@ -1,41 +1,62 @@
 
 import { useEffect, useRef } from "react";
-import { DataColumn, DataDropMode, DataField, DataValues, GridView, LocalDataProvider } from "realgrid-2.7.2";
+import { DataColumn, DataDropMode, DataField, DataValues, GridView, LocalDataProvider, SelectionMode } from "realgrid-2.7.2";
 
 type Props =  {
+  getGridView: (container: HTMLDivElement) => GridView, 
   columns: DataColumn[];
   fields: DataField[];
   rows: DataValues[];
   movable?: boolean;
+  hideRowIndicator?: boolean;
 }
 
-export default function ExampleGrid({rows, columns, fields, movable}: Props) {
+export default function ExampleGrid(props: Props) {
+  const {rows, columns, fields, movable, hideRowIndicator} = props;
   const realgridElement = useRef(null);
 
   useEffect(() => {
     const container = realgridElement.current!;
-    const provider = new LocalDataProvider(true);
-    const gridView = new GridView(container);
-
-    gridView.editOptions.editable = false;
-    gridView.footer.visible = false;
-    gridView.checkBar.visible = false;
-    gridView.stateBar.visible = false;
-
-    gridView.setDataSource(provider);
+    const grid =  props.getGridView(container);
+    const provider = grid.getDataSource() as LocalDataProvider;
+    
+    grid.setStateBar({ visible: false });
+    grid.setCheckBar({ visible: false });
+    grid.setFooter({ visible: false });
+    grid.setRowIndicator({ visible: false });
+    if (hideRowIndicator) {
+      grid.rowIndicator.visible = false;
+    }
+    
+    grid.setDisplayOptions({
+      selectionMode: SelectionMode.SINGLE,
+      selectAndImmediateDrag: true,
+    });
+    
+    grid.setRowStyleCallback((_, item) => {
+      const checked = item.checked ? "checked " : ""
+      return checked ? "row-selected" : '';
+    })
+    
+    grid.onCurrentRowChanged = (grid, _, rowIdx) => {
+      console.log('onCurrentRowChanged');
+      grid.checkAll(false);
+      grid.checkRow(rowIdx, true);
+    }
+    
     provider.setFields(fields);
-    gridView.setColumns(columns);
+    grid.setColumns(columns);
     provider.setRows(rows);
 
     if (movable) {
-      gridView.editOptions.movable = true;
-      gridView.dataDropOptions.dropMode = DataDropMode.COPY;
-      gridView.dataDropOptions.dropOtherElement = true;
+      grid.editOptions.movable = true;
+      grid.dataDropOptions.dropMode = DataDropMode.COPY;
+      grid.dataDropOptions.dropOtherElement = true;
     }
 
     return () => {
       provider.clearRows();
-      gridView.destroy();
+      grid.destroy();
       provider.destroy();
     };
   }, []);
