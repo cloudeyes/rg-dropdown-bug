@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import RealGrid, {
-  GridView as GridViewNew,
-  LocalDataProvider as LocalDataProviderNew,
+  GridView as GridView2,
+  LocalDataProvider as LocalDataProvider2,
 } from "realgrid";
 import { gridVersion, GridView, LocalDataProvider } from "realgrid-2.7.2";
 import ExampleGrid from "./_components/ExampleGrid";
@@ -16,9 +16,9 @@ const getGridView = (container: HTMLDivElement) => {
 };
 
 const getGridViewBuggy = (container: HTMLDivElement) => {
-  const rawGridView = new GridViewNew(container);
+  const rawGridView = new GridView2(container);
   const gridView = rawGridView as unknown as GridView;
-  const provider = new LocalDataProviderNew(
+  const provider = new LocalDataProvider2(
     false
   ) as unknown as LocalDataProvider;
   console.log("gridViewBuggy:", RealGrid.getVersion());
@@ -42,7 +42,6 @@ export default function DragDropBugDemoView() {
         <button
           className="text-sm text-black font-normal ml-5 px-2 py-1 rounded-md border bg-gray-100 hover:bg-gray-200"
           onClick={() => {
-            console.log("targetGrid1:", targetGrid1);
             targetGrid1.current?.getDataSource().clearRows();
           }}
         >
