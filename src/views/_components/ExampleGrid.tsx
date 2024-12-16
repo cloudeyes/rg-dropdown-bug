@@ -16,12 +16,12 @@ type Props = {
   columns: DataColumn[];
   fields: DataField[];
   rows: DataValues[];
-  movable?: boolean;
+  dragSource?: boolean;
   hideRowIndicator?: boolean;
 };
 
 export default function ExampleGrid(props: Props) {
-  const { rows, columns, fields, movable, hideRowIndicator } = props;
+  const { rows, columns, fields, dragSource, hideRowIndicator } = props;
   const realgridElement = useRef(null);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function ExampleGrid(props: Props) {
       grid.checkRow(rowIdx, true);
     };
 
-    if (movable) {
+    if (dragSource) {
       gridView.editOptions.movable = true;
       gridView.setDataDropOptions({
         dropMode: DataDropMode.COPY,

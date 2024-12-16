@@ -74,7 +74,7 @@ export default function DragDropBugDemoView() {
         </div>
       </div>
       <h2 className="flex items-center text-lg font-semibold px-2 py-1 text-red-700 bg-red-50">
-        v2.8.x : Didn't Work
+        v2.8.x : Doesn't Work (Bug)
         <button
           className="text-sm text-black font-normal ml-5 px-2 py-1 rounded-md border bg-gray-100 hover:bg-gray-200"
           onClick={() => targetGrid2.current?.getDataSource().clearRows()}
